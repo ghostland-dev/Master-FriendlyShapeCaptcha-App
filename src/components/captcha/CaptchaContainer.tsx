@@ -9,6 +9,7 @@ import { cn } from '@/lib/utils';
 
 interface CaptchaContainerProps {
   onVerified?: () => void;
+  onFailure?: () => void;
   width?: number;
   height?: number;
   className?: string;
@@ -16,6 +17,7 @@ interface CaptchaContainerProps {
 
 const CaptchaContainer: React.FC<CaptchaContainerProps> = ({
   onVerified,
+  onFailure,
   width = 320,
   height = 220,
   className
@@ -44,7 +46,8 @@ const CaptchaContainer: React.FC<CaptchaContainerProps> = ({
     reset: resetValidation
   } = useCaptchaValidation({
     onSuccess: onVerified,
-    maxAttempts: 3
+    maxAttempts: 3,
+    onFailure: onFailure
   });
   
   // Generate shapes on initial load
