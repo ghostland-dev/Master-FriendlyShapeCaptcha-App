@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import CaptchaContainer from '@/components/captcha/CaptchaContainer';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
+import { ArrowRight } from 'lucide-react';
 
 const Index = () => {
   const [isVerified, setIsVerified] = useState(false);
@@ -61,13 +62,19 @@ const Index = () => {
           </div>
         )}
         
-        <div className="mt-12 text-center text-sm text-gray-500 animate-fade-in">
-          <p>
+        <div className="mt-12 text-center animate-fade-in">
+          <p className="text-sm text-gray-500 mb-2">
             A human-friendly alternative to traditional CAPTCHAs
           </p>
-          <p className="mt-1">
-            Select the shapes that match the instructions
-          </p>
+          <Button 
+            variant="outline" 
+            size="sm"
+            className="text-sm"
+            onClick={() => window.location.href = '/api'}
+          >
+            API & Integration
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ interface CaptchaInstructionsProps {
   targetCount?: number;
   errorMessage?: string | null;
   className?: string;
+  showApiInfo?: boolean;
 }
 
 const CaptchaInstructions: React.FC<CaptchaInstructionsProps> = ({
@@ -15,7 +16,8 @@ const CaptchaInstructions: React.FC<CaptchaInstructionsProps> = ({
   targetColor,
   targetCount = 0,
   errorMessage,
-  className
+  className,
+  showApiInfo = false
 }) => {
   // Helper function to format the color name
   const formatColorName = (color: string) => {
@@ -59,7 +61,7 @@ const CaptchaInstructions: React.FC<CaptchaInstructionsProps> = ({
       <div className="flex flex-col space-y-2">
         <div className="text-center">
           <p className="text-sm text-muted-foreground mb-1">
-            To verify you're human
+            {showApiInfo ? 'Friendly Shape CAPTCHA™' : 'To verify you\'re human'}
           </p>
           <p className="text-base">
             {getInstruction()}
@@ -69,6 +71,14 @@ const CaptchaInstructions: React.FC<CaptchaInstructionsProps> = ({
         {errorMessage && (
           <div className="mt-2 text-sm text-red-500 text-center animate-fade-in">
             {errorMessage}
+          </div>
+        )}
+        
+        {showApiInfo && (
+          <div className="mt-2 text-xs text-gray-500 text-center">
+            <a href="/api" className="text-blue-500 hover:underline">
+              Want to use this in your app?
+            </a>
           </div>
         )}
       </div>
